@@ -1,6 +1,6 @@
 # BMW-IVI-NBT-ingest-module Autopsy
 
-Analysis of in-vehicle infotainment systems of BMW brand vehicles, in the 2017 series 5 and 7 models, with IVI CIC systems
+Analysis of in-vehicle infotainment systems of BMW brand vehicles, in the 2017 series 5 and 7 models, with IVI NBT systems
 
 As the Autopsy tool does not recognize the QNX file system, we have to mount the partitions and then manually load the partitions/folders to the autopsy tool and then do analysis with this ingest module.
 
