@@ -15,9 +15,9 @@ To mount the partitions we use Kali linux
 ![image](https://user-images.githubusercontent.com/33206506/190868972-3047054a-206b-47d1-82b7-d76a29ba0b8c.png)
 
 
-sudo losetup --partscan --find --show test.dd
+### sudo losetup --partscan --find --show test.dd
 
-sudo ls -la /dev/loop0*
+### sudo ls -la /dev/loop0*
 
 ![image](https://user-images.githubusercontent.com/33206506/190868995-1cc588c2-e9d1-4ff1-8ec6-b8e1904a9e45.png)
 
@@ -33,7 +33,7 @@ sudo ls -la /dev/loop0*
 
 
 
-## Autopsy
+# Autopsy
 
  - To load the partitions to the Autopsy tool, we first have to select what type of data we are going to select, in this case we choose Logical Files, to add the folders that correspond to each partition.
 
