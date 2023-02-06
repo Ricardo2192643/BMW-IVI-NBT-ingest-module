@@ -3,10 +3,11 @@
 ## Analysis of in-vehicle infotainment systems of BMW brand vehicles, in the 2017 series 5 and 7 models, with IVI NBT systems
 
 As the Autopsy tool does not support the QNX file system, it was necessary to manually mount the partitions using a Linux distribution and then manually load these partitions into Autopsy to perform the analysis.
+Version 4.18.0 of the Autopsy tool was used.
 
-Mount the Partitions
+##Mount the Partitions
 
-To mount the partitions we use Kali linux
+###To mount the partitions we use Kali linux
 
  - We run the following commands:
 
