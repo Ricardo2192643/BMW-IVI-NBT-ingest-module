@@ -172,13 +172,23 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 attributes.add(BlackboardAttribute(family_name_att_type,IviBmwDbIngestModuleFactory.moduleName, FamilyName))
                 attributes.add(BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_URL.getTypeID(), IviBmwDbIngestModuleFactory.moduleName, Url))
                 attributes.add(BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_ORGANIZATION.getTypeID(), IviBmwDbIngestModuleFactory.moduleName, organisation))
+                
+                
+                
                            
                 art.addAttributes(attributes)
                 try:
                     # index the artifact for keyword search
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
-                    self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())     
+                    self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_CONTACT, None))
+           
+
 
         #contact phone
         arttttId = blackboard.getOrAddArtifactType("TSK_CONTACT_PHONE", "Contact Phone")
@@ -249,6 +259,14 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_CONTACT, None))
+
+
+
 
         #contact email
         arttttIId = blackboard.getOrAddArtifactType("TSK_CONTACT_EMAIL", "Contact Email")
@@ -320,6 +338,11 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
                 
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_CONTACT, None))
+                
         #contact address
         arttttIIId = blackboard.getOrAddArtifactType("TSK_CONTACT_ADDRESS", "Contact Address")
         numFiles = len(files)
@@ -389,7 +412,10 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 attributes.add(BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_LOCATION.getTypeID(), IviBmwDbIngestModuleFactory.moduleName, StreetHousenumber))
                 attributes.add(BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_CITY.getTypeID(), IviBmwDbIngestModuleFactory.moduleName, City))
                 attributes.add(BlackboardAttribute(BlackboardAttribute.ATTRIBUTE_TYPE.TSK_COUNTRY.getTypeID(), IviBmwDbIngestModuleFactory.moduleName, Country))
-                attributes.add(BlackboardAttribute(postal_code_att_type,IviBmwDbIngestModuleFactory.moduleName, Postalcode))                 
+                attributes.add(BlackboardAttribute(postal_code_att_type,IviBmwDbIngestModuleFactory.moduleName, Postalcode)) 
+                
+
+                
                            
                 art.addAttributes(attributes)
                 try:
@@ -397,6 +423,15 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_CONTACT, None))
+
+
+
+        
                 
         #bluetooth
         arttId = blackboard.getOrAddArtifactType("TSK_BLUETOOTH_ADDRESS", "Bluetooth Address")
@@ -459,6 +494,15 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+
+         
+ 
+        
         
         #callstacks
         files = fileManager.findFiles(dataSource, "pm800%.a")
@@ -525,6 +569,15 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
                 
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_CALLLOG, None))
+                        
+           
+
+
+
         #bluetooth pairing, BluetoothAddress, EMEI, IMSI, MODEL TELEPHONE
         files = fileManager.findFiles(dataSource, "p%.db")
 
@@ -586,6 +639,13 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
                 
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_BLUETOOTH_PAIRING, None))
+                
+         
+
         #BROWSER
         files = fileManager.findFiles(dataSource, "BrowserUrls.db")
 
@@ -650,6 +710,12 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_WEB_HISTORY, None))
+        
 
         #COOKIES
         files = fileManager.findFiles(dataSource, "cookie.db")
@@ -715,6 +781,13 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_WEB_COOKIE, None))
+                
+
 
         #messages
         files = fileManager.findFiles(dataSource, "f2%.sqlite")
@@ -855,6 +928,14 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
                 
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_DEVICE_INFO, None))
+                
+                
+                
+                
         #music and groups        
         artId = blackboard.getOrAddArtifactType("TSK_MUSIC_GROUPS", "Music Groups")
 
@@ -912,7 +993,13 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     # index the artifact for keyword search
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
-                    self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())                
+                    self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+                
              
         #software  
         artIId = blackboard.getOrAddArtifactType("TSK_SOFTWARE_INFO", "Software info")
@@ -972,6 +1059,12 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+             
 
         #usbdetails
         artIIId = blackboard.getOrAddArtifactType("TSK_USB_DEVICEDETAILS", "Usb device details")
@@ -1036,6 +1129,12 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+
 
         #folders 
         artIIIId = blackboard.getOrAddArtifactType("TSK_FOLDERS", "Folders")
@@ -1102,6 +1201,17 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
                 
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+
+
+
+       
+
+
+
         #Library albuns        
         artIIIIId = blackboard.getOrAddArtifactType("TSK_LIBRARY_ALBUNS", "Library albums")
 
@@ -1159,6 +1269,12 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+
 
         #Library artists        
         artIIIIIId = blackboard.getOrAddArtifactType("TSK_LIBRARY_ARTISTS", "Library artists")
@@ -1217,6 +1333,15 @@ class IviBmwDbIngestModule(DataSourceIngestModule):
                     blackboard.indexArtifact(art)
                 except Blackboard.BlackboardException as e:
                     self.log(Level.SEVERE, "Error indexing artifact " + art.getDisplayName())
+                
+            # Fire an event to notify the UI and others that there are new artifacts
+            IngestServices.getInstance().fireModuleDataEvent(
+                ModuleDataEvent(IviBmwDbIngestModuleFactory.moduleName, 
+                BlackboardArtifact.ARTIFACT_TYPE.TSK_METADATA, None))
+
+
+
+
 
         #Post a message to the ingest messages in box.
         message = IngestMessage.createMessage(IngestMessage.MessageType.DATA,
