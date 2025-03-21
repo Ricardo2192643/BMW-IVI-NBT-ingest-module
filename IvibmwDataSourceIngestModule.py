@@ -1,7 +1,15 @@
-# Sample module in the public domain. Feel free to use this as a template
-# This software is free, you can use and modify
+# Copyright 2022 Ricardo Manuel da Costa Marques
 #
-# Create ingest module by Ricardo Marques Master's student in Cybersecurity and Forensic Informatics
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+# 
+#
+# Ingest module by Ricardo Marques Master's student in Cybersecurity and Forensic Informatics
 # Polytechnic Institute of Leiria - Portugal
 #
 # This ingest module allows you to investigate SQLite database of
@@ -10,7 +18,7 @@
 # MEI, IMSI, call history, which devices were connected
 # music tastes, web history, cookies and musics groups
 #
-# This ingest module was used Autopsy version 4.18.0
+# This ingest module was tested with Autopsy version 4.21.0
 #
 # Instructions for using this ingest module:
 # Tools - Python Plugins and put ingest module in that folder
